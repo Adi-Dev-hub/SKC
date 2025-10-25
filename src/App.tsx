@@ -1,34 +1,76 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [formData, setFormData] = useState({
+    teamName: '',
+    captainName: '',
+    phoneNumber: ''
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log('Form submitted:', formData)
+    alert(`Team registered!\nTeam: ${formData.teamName}\nCaptain: ${formData.captainName}\nPhone: ${formData.phoneNumber}`)
+    setFormData({ teamName: '', captainName: '', phoneNumber: '' })
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="registration-container">
+      <h1>Team Registration</h1>
+      <form onSubmit={handleSubmit} className="registration-form">
+        <div className="form-group">
+          <label htmlFor="teamName">Team Name</label>
+          <input
+            type="text"
+            id="teamName"
+            name="teamName"
+            value={formData.teamName}
+            onChange={handleChange}
+            required
+            placeholder="Enter team name"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="captainName">Captain Name</label>
+          <input
+            type="text"
+            id="captainName"
+            name="captainName"
+            value={formData.captainName}
+            onChange={handleChange}
+            required
+            placeholder="Enter captain name"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="phoneNumber">Phone Number</label>
+          <input
+            type="tel"
+            id="phoneNumber"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            required
+            placeholder="Enter phone number"
+          />
+        </div>
+
+        <button type="submit" className="submit-button">
+          Register Team
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      </form>
+    </div>
   )
 }
 
