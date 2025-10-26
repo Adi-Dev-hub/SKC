@@ -34,13 +34,28 @@ const RegistrationForm = ({ onClose }: RegistrationFormProps) => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Team registration successful");
-    setFormData(initialForm);
-  };
 
+    const payload = {
+      ...formData,
+      teamID: `TEAM-${Date.now()}`,
+    };
+
+    try {
+      await fetch("YOUR_WEB_APP_URL", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      alert("Team registration successful");
+      setFormData(initialForm);
+    } catch (err) {
+      console.error("Submission failed:", err);
+      alert("Error submitting form");
+    }
+  };
   return (
     <div className="form-fullscreen bg-white p-4">
       <div className="container">
