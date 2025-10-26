@@ -1,5 +1,8 @@
 import { useState } from "react";
 import RegistrationForm from "./RegistrationForm";
+import Spykar from "./assets/Spykar.png";
+import Redbull from "./assets/Red-Bull-Logo-Transparent.png";
+import coffee from "./assets/Caffecofeday.png";
 import "./App.css";
 function App() {
   const [showForm, setShowForm] = useState(false);
@@ -9,14 +12,14 @@ function App() {
       {/* Header Section */}
       <header className="header">
         <div className="logo-left">
-          <img src="/sterling-logo.png" alt="Sterling College" />
+          <img src="/Sterling_logo.png" alt="Sterling College" />
         </div>
         <div className="title-center">
           <h1>Sterling College</h1>
           <h2>7v7 Knockout Soccer Tournament</h2>
         </div>
         <div className="logo-right">
-          <img src="/skc-logo.png" alt="SKC Logo" />
+          <img src="/SKC_logo.png" alt="SKC Logo" />
         </div>
       </header>
       {/* Navigation */}
@@ -59,8 +62,9 @@ function App() {
           <section id="sponsors" className="info-section">
             <h2>🤝 Sponsors</h2>
             <div className="sponsor-logos">
-              <img src="/sponsor1.png" alt="Sponsor 1" />
-              <img src="/sponsor2.png" alt="Sponsor 2" />
+              <img src={Spykar} alt="Sponsor 1" />
+              <img src={Redbull} alt="Sponsor 2" />
+              <img src={coffee} alt="Sponsor 3" />
             </div>
           </section>
           {/* Promotional Section */}
