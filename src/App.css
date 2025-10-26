@@ -65,6 +65,11 @@
   padding: 2rem;
 }
 
+.app-container {
+  background-color: #f8f9fa; /* Bootstrap light gray */
+  color: #212529;
+}
+
 .registration-form {
   background: #ffffff;
   padding: 2rem;

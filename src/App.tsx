@@ -1,3 +1,5 @@
+//App.tsx
+
 import { useState } from "react";
 import RegistrationForm from "./RegistrationForm";
 import Spykar from "./assets/Spykar.png";
