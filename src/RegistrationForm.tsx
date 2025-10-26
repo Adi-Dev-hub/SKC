@@ -36,22 +36,19 @@ const RegistrationForm = ({ onClose }: RegistrationFormProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     const payload = {
       ...formData,
       teamID: `TEAM-${Date.now()}`,
     };
+    console.log("Payload:", payload);
+    console.log("Form submitted:", formData);
 
     try {
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbziVNbExIf5VpiKS36Wo0iLGggZoG1scWw4WcKy0WVK5dMCWszAo-K77NaqzjMJ4Vuf/exec",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }
-      );
-
+      await fetch("/api", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
       alert("Team registration successful");
       setFormData(initialForm);
     } catch (err) {
